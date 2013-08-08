@@ -1,5 +1,9 @@
 library(XML)
 library(stringr)
+
+reference <- readLines("rredis.list")
+names(reference) <- tolower(reference)
+
 URL <- sprintf("http://redis.io/commands/#")
 # src <- readLines(URL)
 src <- htmlParse(URL)
@@ -34,7 +38,10 @@ values <- list(
 		cmd$name
 	},
 	funname = function(cmd) {
-		gsub(" ", "_", cmd$name, fixed=TRUE)
+		retval <- gsub(" ", "_", cmd$name, fixed=TRUE)
+		key <- tolower(sprintf("redis%s", retval))
+		if (! key %in% names(reference)) return(retval)
+		substr(reference[key], 6, nchar(reference[key]))
 	},
 	"args-argv" = function(cmd) {
 		if (length(cmd$args) == 0) return("")
