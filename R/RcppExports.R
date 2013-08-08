@@ -10,8 +10,3 @@ redisCommand <- function(Rc, cmd, args) {
     .Call('Rhiredis_redisCommand', PACKAGE = 'Rhiredis', Rc, cmd, args)
 }
 
-#'@export
-redisConnect <- function(host = "localhost", port = 6379L) {
-    .Call('Rhiredis_redisConnect', PACKAGE = 'Rhiredis', host, port)
-}
-

@@ -22,19 +22,3 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
-// redisConnect
-SEXP redisConnect(std::string host = "localhost", int port = 6379);
-RcppExport SEXP Rhiredis_redisConnect(SEXP hostSEXP, SEXP portSEXP) {
-BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        std::string host = Rcpp::as<std::string >(hostSEXP);
-        int port = Rcpp::as<int >(portSEXP);
-        SEXP __result = redisConnect(host, port);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
-END_RCPP
-}

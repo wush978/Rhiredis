@@ -3,14 +3,13 @@
 
 #include "hiredis/hiredis.h"
 #include <string>
-#include <boost/shared_ptr.hpp>
-
-typedef boost::shared_ptr<redisContext> predisContext;
 
 class RredisContext {
-	predisContext c;
+	redisContext* c;
 public:
-	RredisContext(redisContext *c_src);
+	RredisContext(std::string host, int port);
+	RredisContext(std::string host);
+	RredisContext();
 	~RredisContext();
 	
 	redisContext* get_ptr();

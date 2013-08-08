@@ -3,7 +3,6 @@
 #include "hiredis/hiredis.h"
 #include "util.hpp"
 #include "RredisContext.hpp"
-#include "RcppModule.hpp"
 
 using namespace Rcpp;
 
